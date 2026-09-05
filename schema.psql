@@ -1,0 +1,176 @@
+
+
+-- =====================================================
+-- 2. PRODUCTS & FEATURES
+-- =====================================================
+CREATE TABLE IF NOT EXISTS products (
+  id SERIAL PRIMARY KEY,
+  name TEXT NOT NULL,
+  title TEXT NOT NULL,
+  slug TEXT UNIQUE NOT NULL,
+  image TEXT,
+  image_id TEXT,
+  link TEXT,
+  created_by INT REFERENCES staffs(id) ON DELETE SET NULL,
+  created_at TIMESTAMP DEFAULT now(),
+  updated_at TIMESTAMP DEFAULT now()
+);
+
+CREATE TRIGGER update_products_modtime 
+BEFORE UPDATE ON products 
+FOR EACH ROW EXECUTE PROCEDURE update_modified_column();
+
+CREATE INDEX idx_products_slug ON products(slug);
+CREATE INDEX idx_products_created_by ON products(created_by);
+
+
+-- =====================================================
+-- 3. SUPPORT & TICKET SYSTEMS
+-- =====================================================
+CREATE TABLE IF NOT EXISTS supports (
+  id SERIAL PRIMARY KEY,
+  name TEXT NOT NULL,
+  email TEXT NOT NULL,
+  subject TEXT NOT NULL,
+  description TEXT NOT NULL,
+  reply TEXT,                 
+  status TEXT DEFAULT 'pending' CHECK(status IN ('pending', 'replied')),
+  responded_by INT REFERENCES staffs(id) ON DELETE SET NULL,
+  created_at TIMESTAMP DEFAULT now(),
+  updated_at TIMESTAMP DEFAULT now()
+);
+
+CREATE TRIGGER update_supports_modtime 
+BEFORE UPDATE ON supports 
+FOR EACH ROW EXECUTE PROCEDURE update_modified_column();
+
+CREATE INDEX idx_supports_email ON supports(email);
+CREATE INDEX idx_supports_status ON supports(status);
+CREATE INDEX idx_supports_responded_by ON supports(responded_by);
+
+
+-- =====================================================
+-- 4. COMPANY, CAREERS & BOARDS
+-- =====================================================
+CREATE TABLE IF NOT EXISTS boards (
+  id SERIAL PRIMARY KEY,
+  name TEXT NOT NULL,
+  post TEXT NOT NULL,
+  email TEXT UNIQUE,
+  image TEXT,
+  image_id TEXT,
+  bio TEXT,
+  created_at TIMESTAMP DEFAULT now()
+);
+
+CREATE INDEX idx_boards_email ON boards(email);
+
+CREATE TABLE IF NOT EXISTS careers (
+  job_id SERIAL PRIMARY KEY,
+  title TEXT NOT NULL,
+  location TEXT NOT NULL,
+  job_type TEXT NOT NULL, 
+  level TEXT NOT NULL, 
+  compensation TEXT,
+  description TEXT NOT NULL,
+  responsibilities TEXT[],
+  skills TEXT[],
+  nice_to_have TEXT[],
+  is_published BOOLEAN DEFAULT TRUE,
+  created_at TIMESTAMP DEFAULT now()
+);
+
+CREATE INDEX idx_careers_is_published ON careers(is_published);
+CREATE INDEX idx_careers_job_type ON careers(job_type);
+
+
+
+-- =====================================================
+-- 5. REVIEWS, NOTIFICATIONS & LOGS
+-- =====================================================
+CREATE TABLE IF NOT EXISTS reviews (
+  id SERIAL PRIMARY KEY,
+  user_id INT REFERENCES users(id) ON DELETE CASCADE UNIQUE,
+  tenant_name TEXT,
+  rating INT CHECK (rating BETWEEN 1 AND 5),
+  comment TEXT,
+  reply TEXT,
+  is_approved BOOLEAN DEFAULT FALSE,
+  created_at TIMESTAMP DEFAULT now()
+);
+
+
+-- =====================================================
+-- 6. PARTNERS & LEADS
+-- =====================================================
+CREATE TABLE IF NOT EXISTS partners (
+  id SERIAL PRIMARY KEY,
+  company_name TEXT UNIQUE NOT NULL,
+  slug TEXT UNIQUE NOT NULL,
+  business_url TEXT NOT NULL, 
+  image TEXT NOT NULL,
+  image_id TEXT NOT NULL,
+  email TEXT NOT NULL,
+  created_at TIMESTAMP DEFAULT now()
+);
+
+CREATE INDEX idx_partners_slug ON partners(slug);
+
+
+-- =====================================================
+-- 8. PRIVACY POLICIES
+-- =====================================================
+CREATE TABLE IF NOT EXISTS privacy_policies (
+  id SERIAL PRIMARY KEY,
+  title TEXT NOT NULL,
+  content TEXT NOT NULL,
+  is_published BOOLEAN DEFAULT true,
+  created_by INT REFERENCES staffs(id) ON DELETE SET NULL,
+  updated_by INT REFERENCES staffs(id) ON DELETE SET NULL,
+  created_at TIMESTAMP DEFAULT now(),
+  updated_at TIMESTAMP DEFAULT now()
+);
+
+-- =====================================================
+-- 9. TERMS AND CONDITIONS
+-- =====================================================
+CREATE TABLE IF NOT EXISTS terms_and_conditions (
+  id SERIAL PRIMARY KEY,
+  title TEXT NOT NULL,
+  content TEXT NOT NULL,
+  is_published BOOLEAN DEFAULT true,
+  created_by INT REFERENCES staffs(id) ON DELETE SET NULL,
+  updated_by INT REFERENCES staffs(id) ON DELETE SET NULL,
+  created_at TIMESTAMP DEFAULT now(),
+  updated_at TIMESTAMP DEFAULT now()
+);
+
+-- =====================================================
+-- 10. REFUND CONDITIONS
+-- =====================================================
+CREATE TABLE IF NOT EXISTS refund_conditions (
+  id SERIAL PRIMARY KEY,
+  title TEXT NOT NULL,
+  content TEXT NOT NULL,
+  is_published BOOLEAN DEFAULT true,
+  created_by INT REFERENCES staffs(id) ON DELETE SET NULL,
+  updated_by INT REFERENCES staffs(id) ON DELETE SET NULL,
+  created_at TIMESTAMP DEFAULT now(),
+  updated_at TIMESTAMP DEFAULT now()
+);
+
+-- =====================================================
+-- 11. FAQS
+-- =====================================================
+CREATE TABLE IF NOT EXISTS faqs (
+  id SERIAL PRIMARY KEY,
+  question TEXT NOT NULL,
+  answer TEXT NOT NULL,
+  is_published BOOLEAN DEFAULT true,
+  order_num INT DEFAULT 0,
+  created_by INT REFERENCES staffs(id) ON DELETE SET NULL,
+  updated_by INT REFERENCES staffs(id) ON DELETE SET NULL,
+  created_at TIMESTAMP DEFAULT now(),
+  updated_at TIMESTAMP DEFAULT now()
+);
+
