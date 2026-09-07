@@ -8,4 +8,4 @@ export const PG_PORT=process.env.PG_PORT
 export const PG_DATABASE=process.env.PG_DATABASE
 
 
-export const TETNANT_URL='https://demart.disibin.com'
+export const TETNANT_URL='demart.disibin.com'
