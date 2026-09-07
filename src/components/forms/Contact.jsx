@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import axios from 'axios'
 
 const fields = [
   { id: 'name',    label: 'Your Name', type: 'text',  placeholder: 'John Doe' },
@@ -20,18 +21,12 @@ export default function ContactForm() {
     setStatus('loading')
     setError('')
     try {
-      const res  = await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form),
-      })
-      const data = await res.json()
-      if (!res.ok) throw new Error(data.error || 'Something went wrong')
+      await axios.post('/api/contact', form)
       setStatus('success')
       setForm({ name: '', email: '', subject: '', description: '' })
     } catch (err) {
       setStatus('error')
-      setError(err.message)
+      setError(err.response?.data?.error || err.message || 'Something went wrong')
     }
   }
 

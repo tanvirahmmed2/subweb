@@ -2,6 +2,7 @@ import Navbar from '@/components/bars/Navbar'
 import Footer from '@/components/bars/Footer'
 import Image from 'next/image'
 import Link from 'next/link'
+import axiosInstance from '@/lib/axios'
 
 export const metadata = {
   title: 'Themes — Demart',
@@ -10,10 +11,8 @@ export const metadata = {
 
 async function getThemes() {
   try {
-    const base = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'
-    const res  = await fetch(`${base}/api/themes`, { cache: 'no-store' })
-    if (!res.ok) return []
-    return (await res.json()).themes || []
+    const { data } = await axiosInstance.get('/api/themes')
+    return data.themes || []
   } catch { return [] }
 }
 

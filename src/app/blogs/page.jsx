@@ -1,11 +1,10 @@
 import BlogCard from '@/components/cards/Blog'
+import axiosInstance from '@/lib/axios'
 
 async function getBlogs() {
   try {
-    const base = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'
-    const res  = await fetch(`${base}/api/blog`, { cache: 'no-store' })
-    if (!res.ok) return []
-    return (await res.json()).blogs || []
+    const { data } = await axiosInstance.get('/api/blog')
+    return data.blogs || []
   } catch { return [] }
 }
 

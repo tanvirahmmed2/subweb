@@ -1,11 +1,10 @@
 import PackageCard from '@/components/cards/Package'
+import axiosInstance from '@/lib/axios'
 
 async function getPackages() {
   try {
-    const base = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'
-    const res  = await fetch(`${base}/api/package`, { cache: 'no-store' })
-    if (!res.ok) return []
-    return (await res.json()).packages || []
+    const { data } = await axiosInstance.get('/api/package')
+    return data.packages || []
   } catch { return [] }
 }
 

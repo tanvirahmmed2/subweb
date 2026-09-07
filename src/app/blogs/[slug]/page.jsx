@@ -1,14 +1,12 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
+import axiosInstance from '@/lib/axios'
 
 async function getBlog(slug) {
   try {
-    const base = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'
-    const res  = await fetch(`${base}/api/blog/${slug}`, { cache: 'no-store' })
-    if (res.status === 404) return null
-    if (!res.ok) return null
-    return (await res.json()).blog || null
+    const { data } = await axiosInstance.get(`/api/blog/${slug}`)
+    return data.blog || null
   } catch { return null }
 }
 
