@@ -33,7 +33,7 @@ export default function ContactForm() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex flex-col gap-5 w-full max-w-xl mx-auto rounded-2xl border border-primary/18 bg-tertiary p-8"
+      className="flex flex-col gap-5 w-full max-w-xl mx-auto rounded-sm border border-primary/15 bg-tertiary p-8"
     >
       <div>
         <h2 className="text-2xl font-extrabold text-primary mb-1">Get in Touch</h2>
@@ -52,7 +52,7 @@ export default function ContactForm() {
             value={form[f.id]}
             onChange={handleChange}
             required
-            className="w-full px-4 py-2.5 rounded-xl border border-primary/25 bg-background text-foreground text-[0.9375rem] outline-none focus:border-primary focus:ring-2 focus:ring-primary/15 transition-all placeholder:text-primary-dark/50"
+            className="w-full px-4 py-2.5 rounded-lg border border-primary/25 bg-background text-foreground text-[0.9375rem] outline-none focus:border-primary focus:ring-2 focus:ring-primary/15 transition-all placeholder:text-primary-dark/50"
           />
         </div>
       ))}
@@ -69,18 +69,18 @@ export default function ContactForm() {
           onChange={handleChange}
           required
           rows={5}
-          className="w-full px-4 py-2.5 rounded-xl border border-primary/25 bg-background text-foreground text-[0.9375rem] outline-none focus:border-primary focus:ring-2 focus:ring-primary/15 transition-all resize-y min-h-[120px] placeholder:text-primary-dark/50"
+          className="w-full px-4 py-2.5 rounded-lg border border-primary/25 bg-background text-foreground text-[0.9375rem] outline-none focus:border-primary focus:ring-2 focus:ring-primary/15 transition-all resize-y min-h-[120px] placeholder:text-primary-dark/50"
         />
       </div>
 
       {/* Feedback messages */}
       {status === 'success' && (
-        <p className="px-4 py-3 rounded-xl bg-primary/10 border border-primary/25 text-primary-dark text-sm m-0">
+        <p className="px-4 py-3 rounded-lg bg-primary/10 border border-primary/25 text-primary-dark text-sm m-0">
           ✅ Your message was sent! We&apos;ll reply soon.
         </p>
       )}
       {status === 'error' && (
-        <p className="px-4 py-3 rounded-xl bg-secondary/8 border border-secondary/25 text-secondary-dark text-sm m-0">
+        <p className="px-4 py-3 rounded-lg bg-secondary/8 border border-secondary/25 text-secondary-dark text-sm m-0">
           ⚠️ {error}
         </p>
       )}
@@ -88,7 +88,7 @@ export default function ContactForm() {
       <button
         type="submit"
         disabled={status === 'loading'}
-        className={`py-3 rounded-xl font-bold text-base text-white transition-colors duration-150 ${
+        className={`py-3 rounded-lg font-bold text-base text-white transition-colors duration-150 ${
           status === 'loading'
             ? 'bg-primary-light cursor-not-allowed'
             : 'bg-primary hover:bg-primary-dark cursor-pointer'

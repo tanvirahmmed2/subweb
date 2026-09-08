@@ -6,29 +6,31 @@ export default function PackageCard({ pkg }) {
   const finalPrice = discount > 0 ? price - Math.round((price * discount) / 100) : price
 
   return (
-    <div className="flex flex-col h-full rounded-2xl overflow-hidden border border-primary/18 bg-tertiary hover:shadow-xl hover:shadow-primary/12 hover:-translate-y-1 transition-all duration-200">
-
+    <Link
+      href={`/packages/${slug}`}
+      className="group flex flex-col h-full rounded-sm overflow-hidden border border-primary/15 bg-tertiary hover:shadow-xl hover:shadow-primary/12 hover:-translate-y-1 transition-all duration-200 no-underline"
+    >
       {/* Image / gradient header */}
       {image ? (
-        <div className="relative w-full aspect-[2/1] bg-primary/5">
-          <Image src={image} alt={name} fill className="object-cover" sizes="(max-width: 768px) 100vw, 380px" />
+        <div className="relative w-full aspect-video bg-primary/5 overflow-hidden">
+          <Image src={image} alt={name} fill className="object-cover group-hover:scale-105 transition-transform duration-300" sizes="(max-width: 768px) 100vw, 380px" />
         </div>
       ) : (
-        <div className="w-full aspect-[2/1] bg-gradient-to-br from-primary to-primary-dark flex items-center justify-center">
+        <div className="w-full aspect-video bg-gradient-to-br from-primary to-primary-dark flex items-center justify-center">
           <span className="text-5xl text-white/80">⬡</span>
         </div>
       )}
 
-      <div className="flex flex-col flex-1 p-6">
+      <div className="flex flex-col flex-1 p-5">
         {/* Name */}
-        <h3 className="text-lg font-extrabold mb-1.5" style={{ color: 'var(--foreground)' }}>{name}</h3>
+        <h3 className="text-lg font-bold mb-1.5" style={{ color: 'var(--foreground)' }}>{name}</h3>
 
         {description && (
-          <p className="text-sm text-primary-dark leading-relaxed line-clamp-2 mb-4">{description}</p>
+          <p className="text-sm text-primary-dark leading-relaxed line-clamp-2 flex-1 mb-4">{description}</p>
         )}
 
         {/* Price row */}
-        <div className="flex items-baseline gap-2 mb-5">
+        <div className="flex items-baseline gap-2 mb-4">
           <span className="text-2xl font-extrabold text-primary">
             {price === 0 ? 'Free' : `$${finalPrice}`}
           </span>
@@ -42,7 +44,7 @@ export default function PackageCard({ pkg }) {
 
         {/* Feature list */}
         {features.length > 0 && (
-          <ul className="flex flex-col gap-2 list-none p-0 m-0 mb-6 flex-1">
+          <ul className="flex flex-col gap-2 list-none p-0 m-0 mb-5 flex-1">
             {features.slice(0, 5).map((f) => (
               <li
                 key={f.name}
@@ -59,13 +61,10 @@ export default function PackageCard({ pkg }) {
         )}
 
         {/* CTA */}
-        <Link
-          href={`/packages/${slug}`}
-          className="mt-auto block text-center py-2.5 bg-primary hover:bg-primary-dark text-white font-bold text-[0.9375rem] rounded-xl no-underline transition-colors duration-150"
-        >
-          View Details
-        </Link>
+        <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary group-hover:text-primary-dark transition-colors mt-auto">
+          View Package →
+        </span>
       </div>
-    </div>
+    </Link>
   )
 }

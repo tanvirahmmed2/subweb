@@ -121,13 +121,12 @@ CREATE INDEX idx_blogs_slug ON blogs(slug);
 CREATE INDEX idx_blogs_tenant_id ON blogs(tenant_id);
 CREATE INDEX idx_blogs_created_by ON blogs(created_by);
 
+
 CREATE TABLE IF NOT EXISTS themes (
   id SERIAL PRIMARY KEY,
   tenant_id INT REFERENCES tenants(id) ON DELETE CASCADE,
   title TEXT NOT NULL,
   slug TEXT UNIQUE NOT NULL,
-  image TEXT,
-  image_id TEXT,
   link TEXT,
   description TEXT,
   created_at TIMESTAMP DEFAULT now(),
@@ -138,3 +137,13 @@ BEFORE UPDATE ON themes
 FOR EACH ROW EXECUTE PROCEDURE update_modified_column();
 CREATE INDEX idx_themes_tenant_id ON themes(tenant_id);
 CREATE INDEX idx_themes_slug ON themes(slug);
+
+CREATE TABLE IF NOT EXISTS themes_images (
+  id SERIAL PRIMARY KEY,
+  theme_id INT NOT NULL REFERENCES themes(id) ON DELETE CASCADE,
+  image TEXT NOT NULL,
+  image_id TEXT,
+  description TEXT,
+  created_at TIMESTAMP DEFAULT now()
+);
+CREATE INDEX idx_themes_images_theme_id ON themes_images(theme_id);

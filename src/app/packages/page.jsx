@@ -12,13 +12,9 @@ export default async function PackagesPage() {
   const packages = await getPackages()
 
   return (
-    <div className="max-w-6xl mx-auto px-6 py-16">
-      {/* Page header */}
+    <div className="w-full p-4 md:p-10">
       <div className="text-center mb-14">
-        <span className="inline-block px-3.5 py-1 bg-primary/10 text-primary rounded-full text-[0.75rem] font-bold tracking-widest uppercase mb-4">
-          Pricing
-        </span>
-        <h1 className="text-[clamp(2rem,4.5vw,3.25rem)] font-extrabold tracking-tight mb-4" style={{ color: 'var(--foreground)' }}>
+        <h1 className="text-3xl md:text-5xl font-semibold tracking-tight mb-4" style={{ color: 'var(--foreground)' }}>
           Choose your <span className="text-primary">Package</span>
         </h1>
         <p className="text-[1.0625rem] text-primary-dark max-w-lg mx-auto leading-relaxed">
@@ -31,7 +27,7 @@ export default async function PackagesPage() {
           No packages available yet. Check back soon!
         </p>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
           {packages.map((pkg) => <PackageCard key={pkg.id} pkg={pkg} />)}
         </div>
       )}
