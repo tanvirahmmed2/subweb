@@ -21,7 +21,7 @@ const details = [
     title: "Customer & Sales Management",
     description:
       "Manage customers, orders, purchase history, sales records, and important business insights from one dashboard.",
-    image:'/customer-and-sales-management.jpg',
+    image: '/customer-and-sales-management.jpg',
   },
   {
     id: 4,
@@ -38,9 +38,6 @@ export default function Services() {
       <div className="w-full">
         <div className="flex items-end justify-between flex-wrap gap-4 mb-14">
           <div>
-            <span className="inline-block px-3 py-0.5 rounded-full text-[0.75rem] font-bold tracking-widest uppercase mb-3 bg-primary/10 text-primary">
-              What We Do
-            </span>
             <h2 className="text-[clamp(1.6rem,3.5vw,2.4rem)] font-extrabold tracking-tight m-0" style={{ color: 'var(--foreground)' }}>
               Our Expert <span className="text-primary">Services</span>
             </h2>
@@ -53,12 +50,12 @@ export default function Services() {
           </Link>
         </div>
 
-        <div className="w-full flex flex-col gap-4">
+        <div className="w-full flex flex-col gap-8">
           {details.map((service) => (
-            <div key={service.id}>
-              <p>{service.title}</p>
-                <Image src={service.image} alt={service.title} width={1000} height={1000} className='w-full aspect-5/2 object-cover'/>
-                <p>{service.description}</p>
+            <div key={service.id} className='w-full flex flex-col gap-4'>
+              <p  className='w-full text-center tex-3xl font-semibold'>{service.title}</p>
+              <Image src={service.image} alt={service.title} width={1000} height={1000} className='w-full aspect-5/2 object-cover' />
+              <p>{service.description}</p>
             </div>
           ))}
         </div>
