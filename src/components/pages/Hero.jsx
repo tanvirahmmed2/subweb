@@ -62,10 +62,8 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* Right — decorative card stack */}
         <div className="hidden lg:flex justify-center items-center">
           <div className="relative w-[380px] h-[380px]">
-            {/* Back cards */}
             <div className="absolute top-8 left-8 right-0 bottom-0 rounded-2xl bg-primary/8 border border-primary/20" />
             <div className="absolute top-4 left-4 right-0 bottom-0 rounded-2xl bg-secondary/6 border border-secondary/15" />
             {/* Front card */}
