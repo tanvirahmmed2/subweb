@@ -51,7 +51,7 @@ export default function Hero() {
           <div className="flex flex-wrap gap-8 mt-12">
             {[
               { value: '100+', label: 'Themes' },
-              { value: '50+',  label: 'Packages' },
+              { value: '50+', label: 'Packages' },
               { value: '24/7', label: 'Support' },
             ].map((s) => (
               <div key={s.label}>

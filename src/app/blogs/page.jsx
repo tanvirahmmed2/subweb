@@ -13,10 +13,9 @@ export default async function BlogsPage() {
 
   return (
     <div className="w-full p-4 md:p-10">
-      {/* Header */}
       <div className="text-center mb-14">
         <h1 className="text-3xl md:text-5xl font-semibold tracking-tight mb-4" style={{ color: 'var(--foreground)' }}>
-          From the <span className="text-secondary">Blog</span>
+          Latest <span className="text-secondary">Blogs</span>
         </h1>
         <p className="text-[1.0625rem] text-primary-dark max-w-lg mx-auto leading-relaxed">
           Tips, updates, and stories from the Demart team.

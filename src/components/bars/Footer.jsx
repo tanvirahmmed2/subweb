@@ -4,14 +4,14 @@ const footerLinks = [
   {
     heading: 'Product',
     links: [
-      { label: 'Themes',   href: '/themes' },
+      { label: 'Themes', href: '/themes' },
       { label: 'Packages', href: '/packages' },
     ],
   },
   {
     heading: 'Company',
     links: [
-      { label: 'Blogs',   href: '/blogs' },
+      { label: 'Blogs', href: '/blogs' },
       { label: 'Contact', href: '/contact' },
     ],
   },

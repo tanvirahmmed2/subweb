@@ -17,16 +17,16 @@ export default function ContactPage() {
 
         {/* Info panel */}
         <div>
-          <h2 className="text-xl font-semibold mb-6 text-primary">Why reach out?</h2>
+          <h2 className="text-xl font-semibold mb-6 text-primary">How to reach?</h2>
           <div className="flex flex-col gap-5">
             {[
-              { title: 'General Inquiries', body: 'Questions about our products, services, or pricing.' },
-              { title: 'Technical Support', body: 'Issues with themes, packages, or your dashboard.' },
-              { title: 'Partnerships', body: 'Interested in collaborating with Demart?' },
+              { title: 'Email', body: 'support@disibin.com' },
+              { title: 'Phone', body: '+8801805003886' },
+              { title: 'Address', body: 'Mymensingh, Bangladesh' },
             ].map((item) => (
-              <div key={item.title} className="flex gap-4 p-5 border border-primary/15 bg-tertiary">
+              <div key={item.title} className="flex gap-4 p-5  bg-tertiary">
                 <h3 className="font-semibold text-base mb-1" style={{ color: 'var(--foreground)' }}>{item.title}</h3>
-                  <p className="text-sm text-primary-dark leading-relaxed m-0">{item.body}</p>
+                <p className="text-sm text-primary-dark leading-relaxed m-0">{item.body}</p>
               </div>
             ))}
           </div>

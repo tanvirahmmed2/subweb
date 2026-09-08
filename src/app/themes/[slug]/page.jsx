@@ -44,13 +44,13 @@ export default async function ThemeDetailPage({ params }) {
         ← Back to Themes
       </Link>
 
-      <div className="w-full flex flex-col gap-6 items-center justify-center text-center">
+      <div className="w-full flex flex-col gap-6 items-center justify-center text-center  max-w-6xl mx-auto">
 
         <h1 className="text-xl md:text-4xl font-semibold tracking-tight leading-tight">
           {title}
         </h1>
 
-        <div className="w-full max-w-4xl mx-auto">
+        <div className="w-full">
           {cover ? (
             <div className="relative w-full overflow-hidden border border-primary/15 shadow-lg shadow-primary/8 ">
               <Image
@@ -67,7 +67,7 @@ export default async function ThemeDetailPage({ params }) {
           )}
         </div>
 
-        <div className="flex w-full flex-row items-center justify-center gap-2 max-w-4xl mx-auto">
+        <div className="flex w-full flex-row items-center justify-center gap-2">
           {link && (
             <a
               href={link}
@@ -96,10 +96,10 @@ export default async function ThemeDetailPage({ params }) {
         )}
 
         {images.length > 1 && (
-          <div className="flex flex-col gap-6">
+          <div className="flex flex-col gap-6 w-full">
             {images.map((img) => (
-              <div key={img.id}>
-                <Image src={img.image} alt={img.description} width={1000} height={1000} className='w-full max-w-4xl mx-auto'/>
+              <div key={img.id} className='w-full'>
+                <Image src={img.image} alt={img.description} width={1000} height={1000} className='w-full' />
                 {img.description && (
                   <p className="mt-2 text-sm text-primary-dark">{img.description}</p>
                 )}

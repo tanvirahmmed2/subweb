@@ -4,15 +4,15 @@ import { useState } from 'react'
 import axios from 'axios'
 
 const fields = [
-  { id: 'name',    label: 'Your Name', type: 'text',  placeholder: 'John Doe' },
-  { id: 'email',   label: 'Email',     type: 'email', placeholder: 'john@example.com' },
-  { id: 'subject', label: 'Subject',   type: 'text',  placeholder: 'How can we help?' },
+  { id: 'name', label: 'Your Name', type: 'text', placeholder: 'John Doe' },
+  { id: 'email', label: 'Email', type: 'email', placeholder: 'john@example.com' },
+  { id: 'subject', label: 'Subject', type: 'text', placeholder: 'How can we help?' },
 ]
 
 export default function ContactForm() {
-  const [form, setForm]     = useState({ name: '', email: '', subject: '', description: '' })
+  const [form, setForm] = useState({ name: '', email: '', subject: '', description: '' })
   const [status, setStatus] = useState(null)
-  const [error, setError]   = useState('')
+  const [error, setError] = useState('')
 
   const handleChange = (e) => setForm((f) => ({ ...f, [e.target.id]: e.target.value }))
 
@@ -33,7 +33,7 @@ export default function ContactForm() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex flex-col gap-5 w-full max-w-xl mx-auto rounded-sm border border-primary/15 bg-tertiary p-8"
+      className="flex flex-col gap-5 w-full max-w-xl mx-auto rounded-sm  bg-tertiary p-8"
     >
       <div>
         <h2 className="text-2xl font-extrabold text-primary mb-1">Get in Touch</h2>
@@ -88,11 +88,10 @@ export default function ContactForm() {
       <button
         type="submit"
         disabled={status === 'loading'}
-        className={`py-3 rounded-lg font-bold text-base text-white transition-colors duration-150 ${
-          status === 'loading'
+        className={`py-3 rounded-lg font-bold text-base text-white transition-colors duration-150 ${status === 'loading'
             ? 'bg-primary-light cursor-not-allowed'
             : 'bg-primary hover:bg-primary-dark cursor-pointer'
-        }`}
+          }`}
       >
         {status === 'loading' ? 'Sending…' : 'Send Message'}
       </button>

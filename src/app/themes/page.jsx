@@ -63,7 +63,7 @@ export default async function ThemesPage() {
       <main className="min-h-screen">
         <div className="w-full p-4 md:p-10">
           <div className="text-center mb-14">
-            
+
             <h1 className="text-3xl md:text-5xl font-semibold tracking-tight mb-4" style={{ color: 'var(--foreground)' }}>
               Premium <span className="text-primary">Themes</span>
             </h1>

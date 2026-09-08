@@ -2,10 +2,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 
 export default function BlogCard({ blog }) {
-  const { title, slug, description, image, created_at, author } = blog
-  const date = created_at
-    ? new Date(created_at).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })
-    : null
+  const { title, slug, description, image } = blog
 
   return (
     <Link
@@ -25,26 +22,15 @@ export default function BlogCard({ blog }) {
 
       {/* Body */}
       <div className="flex flex-col flex-1 p-5">
-        {/* Meta */}
-        <div className="flex flex-wrap items-center gap-2 mb-3">
-          {author && (
-            <span className="text-[0.75rem] font-semibold text-primary bg-primary/8 px-2.5 py-0.5 rounded-full">
-              {author}
-            </span>
-          )}
-          {date && (
-            <span className="text-[0.75rem] text-primary-dark">{date}</span>
-          )}
-        </div>
-
         <h3 className="text-lg font-bold mb-1.5 line-clamp-2" style={{ color: 'var(--foreground)' }}>
           {title}
         </h3>
 
         {description && (
-          <p className="text-sm text-primary-dark leading-relaxed line-clamp-2 flex-1 mb-4">
-            {description}
-          </p>
+          <div
+            className="text-sm text-primary-dark leading-relaxed line-clamp-2 flex-1 mb-4"
+            dangerouslySetInnerHTML={{ __html: description }}
+          />
         )}
 
         <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-secondary group-hover:text-secondary-dark transition-colors mt-auto">
