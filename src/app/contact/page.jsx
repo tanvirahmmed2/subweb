@@ -15,9 +15,8 @@ export default function ContactPage() {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
 
-        {/* Info panel */}
         <div>
-          <h2 className="text-xl font-semibold mb-6 text-primary">How to reach?</h2>
+          <h2 className="text-3xl font-semibold mb-6 text-primary">How to reach?</h2>
           <div className="flex flex-col gap-5">
             {[
               { title: 'Email', body: 'support@disibin.com' },
@@ -32,7 +31,6 @@ export default function ContactPage() {
           </div>
         </div>
 
-        {/* Form */}
         <ContactForm />
       </div>
     </div>

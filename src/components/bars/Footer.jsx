@@ -1,3 +1,4 @@
+import { TENANT_NAME } from '@/lib/secret'
 import Link from 'next/link'
 
 const footerLinks = [
@@ -18,7 +19,7 @@ const footerLinks = [
   {
     heading: 'Buy',
     links: [
-      { label: 'Dashboard ↗', href: 'https://dashboard.disibin.com/', external: true },
+      { label: 'Dashboard', href: 'https://dash.disibin.com/', external: true },
     ],
   },
 ]
@@ -27,22 +28,19 @@ export default function Footer() {
   const year = new Date().getFullYear()
   return (
     <footer className="mt-auto border-t border-primary/20" style={{ background: 'var(--background)' }}>
-      <div className="max-w-6xl mx-auto px-6 pt-14 pb-8">
+      <div className="w-full px-6 pt-14 pb-8">
 
-        {/* Top grid */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-10 mb-12">
 
-          {/* Brand */}
           <div className="col-span-2 sm:col-span-1">
             <Link href="/" className="text-[1.3rem] font-extrabold tracking-tight no-underline" style={{ color: 'var(--foreground)' }}>
-              De<span className="text-primary">mart</span>
+            {TENANT_NAME}
             </Link>
-            <p className="mt-3 text-sm text-primary-dark leading-relaxed max-w-[220px]">
+            <p className="mt-3 text-sm text-primary-dark leading-relaxed max-w-55">
               Premium digital resources crafted for modern developers and designers.
             </p>
           </div>
 
-          {/* Link groups */}
           {footerLinks.map((group) => (
             <div key={group.heading}>
               <h4 className="text-[0.72rem] font-bold uppercase tracking-widest text-primary mb-4">
@@ -67,10 +65,9 @@ export default function Footer() {
           ))}
         </div>
 
-        {/* Bottom bar */}
         <div className="border-t border-primary/15 pt-6 flex flex-wrap justify-between gap-2">
           <p className="text-sm text-primary-dark m-0">
-            © {year} Demart. All rights reserved.
+            © {year} Disibin. All rights reserved.
           </p>
           <p className="text-sm text-primary-dark m-0">
             Powered by{' '}

@@ -23,10 +23,7 @@ export default async function Packages({ packages: initialPackages }) {
       <div className="w-full">
         <div className="flex items-end justify-between flex-wrap gap-3 mb-10">
           <div>
-            <span className="inline-block px-3 py-0.5 rounded-full text-[0.75rem] font-bold tracking-widest uppercase mb-3 bg-primary/10 text-primary">
-              Pricing
-            </span>
-            <h2 className="text-[clamp(1.6rem,3.5vw,2.4rem)] font-extrabold tracking-tight m-0" style={{ color: 'var(--foreground)' }}>
+            <h2 className="text-[clamp(1.6rem,3.5vw,2.4rem)] font-semibold tracking-tight m-0" style={{ color: 'var(--foreground)' }}>
               Choose your <span className="text-primary">Package</span>
             </h2>
           </div>

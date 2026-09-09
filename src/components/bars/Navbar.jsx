@@ -1,43 +1,32 @@
 'use client'
 
+import { TENANT_NAME } from '@/lib/secret'
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
-
-const navLinks = [
-  { id: 1, label: 'Themes', href: '/themes' },
-  { id: 2, label: 'Packages', href: '/packages' },
-  { id: 3, label: 'Blogs', href: '/blogs' },
-  { id: 4, label: 'Contact', href: '/contact' },
-  { id: 5, label: 'Buy', href: 'https://dashboard.disibin.com' },
-]
 
 export default function Navbar() {
-  const pathname = usePathname()
 
   return (
     <header
     >
-      <div className="w-full flex items-center justify-between px-6 h-16">
+      <div className="w-full flex items-center justify-between px-6 h-16 shadow-sm">
 
-        <Link href="/" className="text-xl font-semibold text-primary tracking-tight no-underline" >
-          Demart
+        <Link href="/" className="text-xl font-bold text-primary tracking-tight no-underline" >
+          {TENANT_NAME}
         </Link>
 
         <nav className="flex items-center gap-1">
-          {navLinks.map((link) => {
-            const active = pathname === link.href || pathname.startsWith(link.href + '/')
-            return (
-              <Link
-                key={link.id}
-                href={link.href}
-                className={` px-2 md:px-3.5 py-1.5 text-sm md:text-base no-underline transition-colors duration-150 ${active && 'text-primary '
-                  }`}
-              >
-                {link.label}
-              </Link>
-            )
-          })}
+          
+          <Link href={'/themes'} className={` px-2 md:px-3.5 py-1.5 text-sm md:text-base no-underline transition-colors duration-150 hover:text-primary`}>Themes</Link>
+          <Link href={'/packages'} className={` px-2 md:px-3.5 py-1.5 text-sm md:text-base no-underline transition-colors duration-150 hover:text-primary`}>Packages</Link>
+          <Link href={'/blogs'} className={` px-2 md:px-3.5 py-1.5 text-sm md:text-base no-underline transition-colors duration-150 hover:text-primary`}>Blogs</Link>
+          <Link href={'/contact'} className={`hidden md:block px-2 md:px-3.5 py-1.5 text-sm md:text-base no-underline transition-colors duration-150 hover:text-primary`}>Contact</Link>
 
+          <Link
+            href={'https://dash.disibin.com'}
+            className={` px-2 md:px-3.5 py-1 rounded-full text-sm md:text-base no-underline transition-colors duration-150 text-tertiary-light bg-primary`}
+          >
+            Dashboard
+          </Link>
         </nav>
 
       </div>

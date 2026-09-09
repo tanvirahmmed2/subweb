@@ -9,3 +9,4 @@ export const PG_DATABASE=process.env.PG_DATABASE
 
 
 export const TETNANT_URL='demart.disibin.com'
+export const TENANT_NAME='Demart'

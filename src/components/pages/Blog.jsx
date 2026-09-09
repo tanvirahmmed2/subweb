@@ -23,7 +23,7 @@ export default async function Blog({ blogs: initialBlogs }) {
       <div className="w-full">
         <div className="flex items-end justify-between flex-wrap gap-3 mb-10">
           <div>
-            <h2 className="text-[clamp(1.6rem,3.5vw,2.4rem)] font-extrabold tracking-tight m-0" style={{ color: 'var(--foreground)' }}>
+            <h2 className="text-[clamp(1.6rem,3.5vw,2.4rem)] font-semibold tracking-tight m-0" style={{ color: 'var(--foreground)' }}>
               From the <span className="text-secondary">Blog</span>
             </h2>
           </div>
